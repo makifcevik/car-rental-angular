@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CarService } from '../../services/car.service';
 import { Car } from '../../models/car';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-car',
@@ -11,18 +12,34 @@ import { CommonModule } from '@angular/common';
   styleUrl: './car.component.css'
 })
 export class CarComponent {
-  constructor(private carService:CarService) {}
+  constructor(private carService:CarService, private activatedRoute:ActivatedRoute) {}
 
   cars:Car[] = [];
 
-  ngOnInit() 
+  ngOnInit() : void
   {
-    this.getCars();
+    this.activatedRoute.params.subscribe(params =>{
+      if(params["brandId"])
+      {
+        this.getCarsByBrandId(params["brandId"])
+      }
+      else
+      {
+        this.getCars();
+      }
+    });
   }
 
   getCars()
   {
     this.carService.getCars().subscribe(response => {
+      this.cars = response.data;
+    })
+  }
+
+  getCarsByBrandId(brandId:number)
+  {
+    this.carService.getCarsByBrandId(brandId).subscribe(response =>{
       this.cars = response.data;
     })
   }
