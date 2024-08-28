@@ -1,6 +1,6 @@
 export interface Car
 {
-    name:string;
+    carName:string;
     brandName:string;
     colorName:string;
     images:string[];

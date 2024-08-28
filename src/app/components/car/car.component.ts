@@ -44,4 +44,10 @@ export class CarComponent {
     })
   }
 
+  getImageUrl(imageName:string)
+  {
+    const baseUrl:string = "http://localhost:5062/images/"
+    return baseUrl + imageName;
+  }
+
 }

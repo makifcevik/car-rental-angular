@@ -1,19 +1,19 @@
-<table class="table">
-    
-    <thead>
-        <tr>
-            <td>NAME</td>
-            <td>BRAND</td>
-            <td>COLOR</td>
-            <td>IMAGES</td>
-            <td>DAILY PRICE</td>
-        </tr>
-    </thead>
-    <tr *ngFor="let car of cars">
-        <td>{{car.name}}</td>
-        <td>{{car.brandName}}</td>
-        <td>{{car.colorName}}</td>
-        <td>{{car.images}}</td>
-        <td>{{car.dailyPrice}}</td>
-    </tr>
-</table>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Search Car</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Type here to search">
+</div>
+
+<div class="container-xl">
+    <div class="row">
+        <div *ngFor="let car of cars" class="col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <img [src]="getImageUrl(car.images[0])" class="card-img-top" alt="Image of {{car.carName}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{car.carName}}</h5>
+                    <p class="card-text">Some descriptive text about the car that is shown on the image.</p>
+                    <a href="#" class="btn btn-primary">Check Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
